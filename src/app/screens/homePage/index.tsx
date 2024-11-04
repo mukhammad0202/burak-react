@@ -27,6 +27,8 @@ export default function HomePage() {
   const { setPoppularDishes } = actionDispatch(useDispatch());
   const { popularDishes } = useSelector(popularDishesRetriever);
 
+  console.log(process.env.REACT_APP_API_URL);
+
   useEffect(() => {}, []);
 
   return (
