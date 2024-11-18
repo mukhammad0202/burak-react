@@ -4,7 +4,7 @@ import { CartItem } from "../../lib/types/search";
 const useBasket = () => {
   const cartJson: string | null = localStorage.getItem("cartData");
   const currentCart = cartJson ? JSON.parse(cartJson) : [];
-  const [cartItems, setCartItems] = useState<CartItem[]>([currentCart]);
+  const [cartItems, setCartItems] = useState<CartItem[]>(currentCart);
 
   const onAdd = (input: CartItem) => {
     const exist: any = cartItems.find(
@@ -21,9 +21,8 @@ const useBasket = () => {
       setCartItems(cartUpdate);
       localStorage.setItem("cartData", JSON.stringify(cartUpdate));
     }
-    localStorage.setItem("cartData", JSON.stringify(input));
+    localStorage.setItem("cartData", JSON.stringify([...cartItems, input]));
   };
-
   const onRemove = (input: CartItem) => {
     const exist: any = cartItems.find(
       (item: CartItem) => item._id === input._id
@@ -41,7 +40,10 @@ const useBasket = () => {
           : item
       );
       setCartItems(cartUpdate);
-      localStorage.setItem("cartData", JSON.stringify(cartUpdate));
+      localStorage.setItem(
+        "cartData",
+        JSON.stringify([...cartItems, cartUpdate])
+      );
     }
   };
 
@@ -50,7 +52,10 @@ const useBasket = () => {
       (item: CartItem) => item._id !== input._id
     );
     setCartItems(cartUpdate);
-    localStorage.setItem("cartData", JSON.stringify(cartUpdate));
+    localStorage.setItem(
+      "cartData",
+      JSON.stringify([...cartItems, cartUpdate])
+    );
   };
 
   const onDeleteAll = () => {
