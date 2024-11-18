@@ -17,11 +17,13 @@ const useBasket = () => {
           ? { ...exist, quantity: exist.quantity + 1 }
           : item;
       });
-
       setCartItems(cartUpdate);
       localStorage.setItem("cartData", JSON.stringify(cartUpdate));
+    } else {
+      const cartUpdate = [...cartItems, { ...input }];
+      setCartItems(cartUpdate);
+      localStorage.setItem("cartData", JSON.stringify([...cartItems, input]));
     }
-    localStorage.setItem("cartData", JSON.stringify([...cartItems, input]));
   };
   const onRemove = (input: CartItem) => {
     const exist: any = cartItems.find(
