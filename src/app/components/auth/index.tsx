@@ -109,7 +109,7 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
 
       const member = new MemberService();
       const result = await member.login(loginInput);
-
+      localStorage.setItem("member", JSON.stringify(result));
       setAuthMember(result);
       handleLoginClose();
     } catch (err) {

@@ -269,6 +269,7 @@ export default function Products(props: ProductsProps) {
                                 price: product.productPrice,
                                 image: product.productImages[0],
                               });
+
                               e.stopPropagation();
                             }}
                           >

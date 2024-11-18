@@ -25,7 +25,7 @@ class OrderService {
         };
       });
 
-      const url = this.path + "/order/craete";
+      const url = this.path + "/order/create";
       const result = await axios.post(url, orderItem, {
         withCredentials: true,
       });
